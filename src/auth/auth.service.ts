@@ -15,7 +15,11 @@ export class AuthService {
     pass: string,
   ): Promise<{ access_token: string }> {
     const user = await this.usersService.findOne(username);
+    console.log(user);
+    console.log(username);
+    
     if (user?.password !== pass) {
+      console.log(`Não rolou, as senhas são ${user?.password} e ${pass}`);
       throw new UnauthorizedException();
     }
     const payload = { sub: user.userId, username: user.username };

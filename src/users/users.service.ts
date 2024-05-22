@@ -5,8 +5,8 @@ export type User = any;
 
 @Injectable()
 export class UsersService {
-  private readonly users = [
-    {
+  readonly users = [
+    { 
       userId: 1,
       username: 'Fulano Teste',
       password: '123321',
