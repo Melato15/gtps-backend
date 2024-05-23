@@ -1,12 +1,12 @@
 /* eslint-disable prettier/prettier */
-import { IsString, MinLength } from "class-validator";
+import { IsString, MinLength, IsInt } from "class-validator";
 
 export class CreateUserDto {
   @IsString()
-  @MinLength(4)
-  username: string;
+  @MinLength(10)
+  email: string;
 
-  @IsString()
-  @MinLength(6)
-  password: string;
+  @IsInt()
+  @MinLength(1)
+  matricula: number;
 }

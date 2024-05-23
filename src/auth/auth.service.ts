@@ -11,18 +11,18 @@ export class AuthService {
   ) {}
 
   async signIn(
-    username: string,
-    pass: string,
+    email: string,
+    matricula: string,
   ): Promise<{ access_token: string }> {
-    const user = await this.usersService.findOne(username);
+    const user = await this.usersService.findOne(email);
     console.log(user);
-    console.log(username);
+    console.log(email);
     
-    if (user?.password !== pass) {
-      console.log(`Não rolou, as senhas são ${user?.password} e ${pass}`);
+    if (user?.matricula !== matricula) {
+      console.log(`Não rolou, as senhas são ${user?.matricula} e ${matricula}`);
       throw new UnauthorizedException();
     }
-    const payload = { sub: user.userId, username: user.username };
+    const payload = { sub: user.userId, email: user.email };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
