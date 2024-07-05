@@ -13,6 +13,12 @@ export class AuthController {
     return this.authService.signIn(signInDto.email, signInDto.matricula)
   }
 
+  @HttpCode(HttpStatus.OK)
+  @Post('loginAdmin')
+  signInAdmin(@Body() signInDto: Record<string, any>) {
+    return this.authService.signIn(signInDto.email, signInDto.senha)
+  }
+
   @UseGuards(AuthGuard)
   @Get('profile')
   getProfile(@Request() req) {
